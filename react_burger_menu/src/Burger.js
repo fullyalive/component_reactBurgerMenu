@@ -1,13 +1,44 @@
 import React, { Component } from "react";
 import { slide as Menu } from "react-burger-menu";
 
+class Burger extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentMenu: "slide",
+      side: "left"
+    };
+  }
+  showSettings(event) {
+    event.preventDefault();
+  }
+  render() {
+    return (
+      <Menu right width={"40%"} styles={MenuStyles}>
+        <a id="home" className="menu-item" href="/">
+          Home
+        </a>
+        <a id="about" className="menu-item" href="/about">
+          About
+        </a>
+        <a id="contact" className="menu-item" href="/contact">
+          Contact
+        </a>
+        <a onClick={this.showSettings} className="menu-item--small" href="">
+          Settings
+        </a>
+      </Menu>
+    );
+  }
+}
+
 const MenuStyles = {
   /* Position and sizing of burger button */
   bmBurgerButton: {
     position: "fixed",
-    width: "36px",
-    height: "30px",
-    left: "36px",
+    width: "24px",
+    height: "20px",
+    right: "36px",
     top: "36px"
   },
 
@@ -18,8 +49,11 @@ const MenuStyles = {
 
   /* Position and sizing of clickable cross button */
   bmCrossButton: {
-    height: "24px",
-    width: "24px"
+    position: "fixed",
+    width: "24px",
+    height: "20px",
+    right: "36px",
+    top: "36px"
   },
 
   /* Color/shape of close button cross */
@@ -55,36 +89,5 @@ const MenuStyles = {
     background: "rgba(0, 0, 0, 0.3)"
   }
 };
-
-class Burger extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentMenu: "slide",
-      side: "left"
-    };
-  }
-  showSettings(event) {
-    event.preventDefault();
-  }
-  render() {
-    return (
-      <Menu right width={"20%"} styles={MenuStyles}>
-        <a id="home" className="menu-item" href="/">
-          Home
-        </a>
-        <a id="about" className="menu-item" href="/about">
-          About
-        </a>
-        <a id="contact" className="menu-item" href="/contact">
-          Contact
-        </a>
-        <a onClick={this.showSettings} className="menu-item--small" href="">
-          Settings
-        </a>
-      </Menu>
-    );
-  }
-}
 
 export default Burger;
